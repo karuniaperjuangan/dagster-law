@@ -8,7 +8,9 @@ setup(
         "dagster-cloud",
         "duckdb",
         "aiohttp",
-        "aiofiles"
+        "aiofiles",
+        "asyncio",
+        "beautifulsoup4",
     ],
     extras_require={"dev": ["dagster-webserver", "pytest"]},
 )

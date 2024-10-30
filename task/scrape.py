@@ -186,7 +186,7 @@ async def merge_temp_files() -> List[dict]:
     return list_law
 
 async def main():
-    #last_page_number = await get_num_pages(BASE_URL)
+    last_page_number = await get_num_pages(BASE_URL)
     last_page_number = 5
     # Main execution
     await get_law_list_from_page(last_page_number)
@@ -196,16 +196,6 @@ async def main():
     async with aiofiles.open('list_law.json', 'w') as f:
         await f.write(json.dumps(merged_list_law, indent=2))
     logger.info("All pages have been merged into list_law.json")
-
-    ### if running on google colab, save to google drive
-
-    try:
-        from google.colab import drive
-        drive.mount('/content/drive')
-        with open('/content/drive/My Drive/list_law.json', 'w') as f:
-            json.dump(merged_list_law, f)
-    except Exception as e:
-        logger.error(e)
 
 if __name__ == "__main__":
     asyncio.run(main())
